@@ -1,0 +1,12 @@
+BsLib/bin/**/*
+BsLib/obj/**/*
+BsEnums/bin/**/*
+BsEnums/obj/**/*
+BsLib.Tests/*
+ClassCreator/*
+CommClss/bin/**/*
+CommClss/obj/**/*
+ConsoleApp/*
+GeoClss/bin/**/*
+GeoClss/obj/**/*
+

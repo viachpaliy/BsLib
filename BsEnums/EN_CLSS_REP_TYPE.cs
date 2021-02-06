@@ -1,0 +1,15 @@
+using System;
+
+namespace BsEnums
+{
+  public enum EN_CLSS_REP_TYPE
+  {
+	CREP_UNKNOWN = -1,
+	CREP_LINEAR_X,
+	CREP_LINEAR_Y,
+	CREP_LINEAR_XY,
+	CREP_CIRCULAR,
+	CREP_CIRCULAR_NORAD,
+	CREP_LINEAR_ANGDIST
+  }
+}

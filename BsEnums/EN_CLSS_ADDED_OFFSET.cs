@@ -1,0 +1,11 @@
+namespace BsEnums
+{
+    public enum EN_CLSS_ADDED_OFFSET
+  {
+	CPAN_ADDED_OFFSET_NO = 0,
+	CPAN_ADDED_OFFSET_X = 1,
+	CPAN_ADDED_OFFSET_Y = 2,
+	CPAN_ADDED_OFFSET_Z = 4,
+	CPAN_ADDED_OFFSET_TST = 0x80
+  }
+}
