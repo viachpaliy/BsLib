@@ -104,6 +104,13 @@ public class GEPoint : IGeoElement
 		set;
 	}
 
+    public int PLineID
+	{
+		get;
+
+		set;
+	}
+
 	public EN_CLSS_RETURN_CODE GetPoint(EN_CLSS_POINT nWhich, out double pdX, out double pdY, out double pdZ)
     {
         pdX = X;
@@ -176,7 +183,7 @@ public class GEPoint : IGeoElement
          throw new NotImplementedException();
     }
 
-	public void ChangeDir([In] EN_CLSS_ON_OFF nSwapTachData)
+	public void ChangeDir(EN_CLSS_ON_OFF nSwapTachData)
     {
          throw new NotImplementedException();
     }
@@ -243,5 +250,197 @@ public class GEPoint : IGeoElement
         YNv = dYNv;
         ZNv = dZNv;
     }
+
+    public GEPoint(GEPoint other)
+    {
+        X = other.X;
+        Y = other.Y;
+        Z = other.Z;
+        XNv = other.XNv;
+        YNv = other.YNv;
+        ZNv = other.ZNv;
+        ID = other.ID;
+        Layer = other.Layer;
+        PassThrough = other.PassThrough;
+        First = other.First;
+        Color = other.Color;
+        TechData = other.TechData;
+        DxfLayer = other.DxfLayer;
+    }
+
+    public IGeoElement CreateCopy()
+    {
+        return (IGeoElement)(new GEPoint(this));
+    }
+
+    public void GetMaxMin(out double dXMax, out double dYMax, out double dZMax, out double dXMin, out double dYMin, out double dZMin)
+    {
+        dXMax = X;
+        dYMax = Y;
+        dZMax = Z;
+        dXMin = X;
+        dYMin = Y;
+        dZMin = Z;
+    }
+
+    public double GetLength(out int nError)
+    {
+        nError = (int)EN_CLSS_RETURN_CODE.CCE_POINT_OUT_LINE;
+        return 0;
+    }
+
+    public int GetTanDir(EN_CLSS_POINT nUsePoint, out double dX, out double dY, out double dZ)
+    {
+        dX = YNv;
+        dY = XNv;
+        return (int)EN_CLSS_RETURN_CODE.CCE_POINT_OUT_LINE;
+    }
+
+    public void Break2Elements(double dDistance, EN_CLSS_POINT nUsePoint, out IGeoElement pGeoEle)
+    {
+        throw new NotImplementedException();
+    }
+
+    public EN_CLSS_RETURN_CODE GetNv(EN_CLSS_POINT nWhich, out double pdXNv, out double pdYNv, out double pdZNv)
+    {
+       pdXNv = XNv;
+       pdYNv = YNv;
+       pdZNv = ZNv;
+       return (int)EN_CLSS_RETURN_CODE.CCE_POINT_OUT_LINE; 
+    }
+
+    public void ProjectToXYPlane()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Rotate3D(double dOrigX, double dOrigY, double dOrigZ, double dAxisX, double dAxisY, double dAxisZ, double dRotAngle, EN_CLSS_ON_OFF nRotNv)
+    {
+        throw new NotImplementedException();
+    }
+    
+    public void Trace()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void CopyGeoElementDataTo(IGeoElement pISrc)
+    {
+        throw new NotImplementedException();
+    }
+
+    public EN_CLSS_RETURN_CODE SetNv(EN_CLSS_POINT nWhich, double dXNv, double dYNv, double dZNv)
+    {
+        XNv = dXNv;
+        YNv = dYNv;
+        ZNv = dZNv;
+        return EN_CLSS_RETURN_CODE.CCE_OK; 
+    }
+
+    public void SwapXY()
+    {
+        double temp = X;
+        X = Y;
+        Y = temp;
+    }
+
+    public void GetRelativeReferenceFrame(EN_CLSS_POINT nWhich, out double dXx, out double dYx, out double dZx, out double dXy, out double dYy, out double dZy, out double dXz, out double dYz, out double dZz)
+    {
+        throw new NotImplementedException();
+    }
+
+    public EN_CLSS_ON_OFF IsLayer(EN_CLSS_GEO_LAYER nLayer)
+    {
+        if (Layer == nLayer)
+        {
+            return EN_CLSS_ON_OFF.CCL_ON;
+        }
+        return EN_CLSS_ON_OFF.CCL_OFF;
+    }
+    
+    public void AddLayer(EN_CLSS_GEO_LAYER nLayer)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void RemoveLayer(EN_CLSS_GEO_LAYER nLayer)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int GetSharpCorners(double dDeltaIn, double dDeltaOut, int nCorner, out Geometries pGeometries)
+    {
+        throw new NotImplementedException();
+        return -1;
+    }
+
+    public int AddLinearInOutOnSharpCorners(double dParallelLeaningIn, double dParallelLeaningOut, double dPerpendicularLeaning, double dHoriCopyingDistance, double dExtraDepthFromPanel, double dVertCopyingDistance, EN_CLSS_GEO_LAYER nHCopyingLayer, EN_CLSS_GEO_LAYER nVCopyingLayer, EN_CLSS_ON_OFF nRightPerpLeaning, EN_CLSS_ON_OFF nAlsoOnExtremes, int nCorner, out Geometry pGeometry)
+    {
+        throw new NotImplementedException();
+        return -1;
+    }
+
+    public int ComparedTo(IGeoElement pSecondElement, double vTangentPrecision)
+    {
+        throw new NotImplementedException();
+        return -1;
+    }
+
+    public int SmoothConnectionWith(IGeoElement pSecondElement, double dRadius, out IGeoElement pSmoothLink)
+	{
+        throw new NotImplementedException();
+        return -1;
+    }
+
+	public int GetPointFromDistance(double dDistance, EN_CLSS_POINT nPoint, out double dX, out double dY, out double dZ)
+	{
+        throw new NotImplementedException();
+        return -1;
+    }
+
+	public int GetTangentFromDistance(double dDistance, EN_CLSS_POINT nPoint, out double dX, out double dY, out double dZ)
+	{
+        throw new NotImplementedException();
+        return -1;
+    }
+
+	public int Intersect(IGeoElement pGeoElement, EN_CLSS_ON_OFF nExtend1, EN_CLSS_ON_OFF nExtend2, out Geometry pSolutions)
+    {
+        throw new NotImplementedException();
+        return -1;
+    }
+
+	public void ExplodeGeometry(out Geometry pGeometry, EN_CLSS_ON_OFF nAddPoint, int nCorner)
+    {
+        throw new NotImplementedException();
+    }
+
+	public int GetDistanceFromPoint(EN_CLSS_POINT nRefPoint, double dX, double dY, double dZ, out double dDistance)
+	{
+        throw new NotImplementedException();
+        return -1;
+    }
+
+	public double Distance(IGeoElement pGeoElement)
+	{
+        throw new NotImplementedException();
+        return -1;
+    }
+
+	public void GetStartEndPoints(out double dXS, out double dYS, out double dZS, out double dXE, out double dYE, out double dZE)
+    {
+        throw new NotImplementedException();
+    }
+
+	public void GetGeoEntity(out string pData, out int pSize)
+    {
+        throw new NotImplementedException();
+    }
+	
+	public void SetGeoEntity(string pData)
+    {
+        throw new NotImplementedException();
+    }
+
   } 
 }
