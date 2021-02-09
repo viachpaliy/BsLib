@@ -59,7 +59,7 @@ public class Geometry : IGeometry
 
 	public IEnumerator GetEnumerator()
     {
-        items.GetEnumerator();
+        return items.GetEnumerator();
     }
 
 	public IGeoElement Item(int nIndex)
@@ -76,7 +76,7 @@ public class Geometry : IGeometry
 	public void Remove(int nIndex)
     {
         items.RemoveAt(nIndex);
-        keys.RemoveAt(Index);
+        keys.RemoveAt(nIndex);
     }
 
 	public void RemoveAll()
@@ -87,7 +87,7 @@ public class Geometry : IGeometry
 
     public Geometry(Geometry other)
     {
-        foreach (var item in other)
+        foreach (IGeoElement item in other)
         {
             Add(item,"");
         }
@@ -144,7 +144,7 @@ public class Geometry : IGeometry
         double length = 0;
         foreach(var item in items)
         {
-            length += item.GetLength(nError);
+            length += item.GetLength(out nError);
         }
         return length;
     }
@@ -162,12 +162,12 @@ public class Geometry : IGeometry
 	
 	public void GetStartPoint(out double dX, out double dY, out double dZ)
     {
-        item[0].GetPoint(EN_CLSS_POINT.CPOINT_START, dX, dY, dZ);
+        items[0].GetPoint(EN_CLSS_POINT.CPOINT_START, dX, dY, dZ);
     }
     
 	public void GetEndPoint(out double dX, out double dY, out double dZ)
     {
-        item[Count - 1].GetPoint(EN_CLSS_POINT.CPOINT_END, dX, dY, dZ);
+        items[Count - 1].GetPoint(EN_CLSS_POINT.CPOINT_END, dX, dY, dZ);
     }
 
 	public void GetStartNv(out double dX, out double dY, out double dZ)

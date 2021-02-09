@@ -228,7 +228,7 @@ public class GEPoint : IGeoElement
         nFirst = First;
         nColor = Color;
         pTechData = TechData;
-        sDxfLayer = DxfLayer;
+        pDxfLayer = DxfLayer;
     }
 
 	public void GetPointPosAndNv(out double dX, out double dY, out double dZ, out double dXNv, out double dYNv, out double dZNv)
@@ -306,7 +306,7 @@ public class GEPoint : IGeoElement
        pdXNv = XNv;
        pdYNv = YNv;
        pdZNv = ZNv;
-       return (int)EN_CLSS_RETURN_CODE.CCE_POINT_OUT_LINE; 
+       return EN_CLSS_RETURN_CODE.CCE_POINT_OUT_LINE; 
     }
 
     public void ProjectToXYPlane()

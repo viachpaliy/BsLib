@@ -20,7 +20,7 @@ namespace  GeoClss
 
 	public IEnumerator GetEnumerator()
     {
-        items.GetEnumerator();
+        return items.GetEnumerator();
     }
 
 	public Geometry Item(int Index)
@@ -37,7 +37,7 @@ namespace  GeoClss
 	public void Remove(int Index)
     {
         items.RemoveAt(nIndex);
-        keys.RemoveAt(Index);
+        keys.RemoveAt(nIndex);
     }
 
 	public void RemoveAll()
