@@ -244,12 +244,12 @@ public interface IBoring
 	}
 
 
-	TdCodeStep VertStep
-	{
-		get;
-
-		set;
-	}
+	//TdCodeStep VertStep
+	//{
+	//	get;
+    //
+	//	set;
+	//}
 
 
 	int SideAggr21

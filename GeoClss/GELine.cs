@@ -332,13 +332,14 @@ namespace  GeoClss
 	
 	public void GetCommonParameters(out int nID, out EN_CLSS_GEOELE_TYPE nGeoType, out EN_CLSS_GEO_LAYER nLayer, out EN_CLSS_ON_OFF nPassThrough, out EN_CLSS_ON_OFF nFirst, out int nColor, out GETechData pTechData, out string pDxfLayer)
     {
+        nGeoType = GeoType;
         nID = ID;
         nLayer = Layer;
         nPassThrough = PassThrough;
         nFirst = First;
         nColor = Color;
         pTechData = TechData;
-        sDxfLayer = DxfLayer;
+        pDxfLayer = DxfLayer;
     }
 
 	public void SetLineParameters(double dXS, double dYS, double dZS, double dXSNv, double dYSNv, double dZSNv, double dXE, double dYE, double dZE, double dXENv, double dYENv, double dZENv)

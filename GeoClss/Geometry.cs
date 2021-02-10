@@ -56,6 +56,7 @@ public class Geometry : IGeometry
 		set;
 	}
 
+    public Geometry(){}
 
 	public IEnumerator GetEnumerator()
     {
@@ -142,10 +143,12 @@ public class Geometry : IGeometry
 	public double GetLength(out int nError)
     {
         double length = 0;
+        int error = 0;
         foreach(var item in items)
         {
-            length += item.GetLength(out nError);
+            length += item.GetLength(out error);
         }
+        nError = error;
         return length;
     }
 
@@ -162,21 +165,27 @@ public class Geometry : IGeometry
 	
 	public void GetStartPoint(out double dX, out double dY, out double dZ)
     {
-        items[0].GetPoint(EN_CLSS_POINT.CPOINT_START, dX, dY, dZ);
+        items[0].GetPoint(EN_CLSS_POINT.CPOINT_START,out dX,out dY,out dZ);
     }
     
 	public void GetEndPoint(out double dX, out double dY, out double dZ)
     {
-        items[Count - 1].GetPoint(EN_CLSS_POINT.CPOINT_END, dX, dY, dZ);
+        items[Count - 1].GetPoint(EN_CLSS_POINT.CPOINT_END, out dX, out dY, out dZ);
     }
 
 	public void GetStartNv(out double dX, out double dY, out double dZ)
     {
+        dX = 0;
+        dY = 0;
+        dZ = 0;
         throw new NotImplementedException();
     }
 
 	public void GetEndNv(out double dX, out double dY, out double dZ)
     {
+        dX = 0;
+        dY = 0;
+        dZ = 0;
         throw new NotImplementedException();
     }
 
@@ -306,6 +315,7 @@ public class Geometry : IGeometry
 	
 	public void Discretize(double dMaxSegmentLength, EN_CLSS_ON_OFF nDecomposeAlsoLines, out EN_CLSS_ON_OFF nBadDiscretiz)
     {
+        nBadDiscretiz = EN_CLSS_ON_OFF.CCL_OFF;
         throw new NotImplementedException();
     }
 	

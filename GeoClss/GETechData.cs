@@ -14,7 +14,7 @@ namespace  GeoClss
     double Ab = 0;
     double Am = 0;
     int CoeffRcI = 0;
-    int NotUsed2 = 0;
+    
 
 	public EN_CLSS_SHARPCORNER SharpCorner
 	{
@@ -74,6 +74,7 @@ namespace  GeoClss
 //
 //		set;
 //	}
+    public GETechData(){}
 
     public GETechData(GETechData other)
     {
@@ -94,6 +95,7 @@ namespace  GeoClss
 
 	public void CopyTo(out GETechData pICopy)
     {
+        pICopy = new GETechData();
         pICopy.SharpCorner = SharpCorner;
         pICopy.WorkSpeed = WorkSpeed;
         pICopy.RotSpeed = RotSpeed;
@@ -133,6 +135,20 @@ namespace  GeoClss
         dRotSpeed = RotSpeed;
         dZi = Zi;
         dZf = Zf;   
+        dCbAxis = CbAxis;
+        dRcAxis = RcAxis;
+        dMeccCorrCb = MeccCorrCb;
+        dGeomCorrCb = GeomCorrCb;
+        dAb = Ab;
+        dAm = Am;
+        nCoeffRcI = CoeffRcI;
+        nNotUsed2 = 0;
+        dX1 = 0;
+        dY1 = 0;
+        dZ1 = 0;
+        dX2 = 0;
+        dY2 = 0;
+        dZ2 = 0;
     }
 
 	public int GetEdgingData(out double dCbAxis, out double dRcAxis, out double dMeccCorrCb, out double dGeomCorrCb, out double dAb, out double dAm, out int nCoeffRcI, out int nNotUsed2)
@@ -145,7 +161,7 @@ namespace  GeoClss
         dAb = Ab;
         dAm = Am;
         nCoeffRcI = CoeffRcI;
-        nNotUsed2 = NotUsed2;
+        nNotUsed2 = 0;
         return errorCode;       
     }
 
@@ -158,7 +174,7 @@ namespace  GeoClss
         Ab = dAb;
         Am = dAm;
         CoeffRcI = nCoeffRcI;
-        NotUsed2 = nNotUsed2;
+        
     }
 
   }

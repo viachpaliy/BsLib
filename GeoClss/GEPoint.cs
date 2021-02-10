@@ -222,6 +222,7 @@ public class GEPoint : IGeoElement
 
 	public void GetCommonParameters(out int nID, out EN_CLSS_GEOELE_TYPE nGeoType, out EN_CLSS_GEO_LAYER nLayer, out EN_CLSS_ON_OFF nPassThrough, out EN_CLSS_ON_OFF nFirst, out int nColor, out GETechData pTechData, out string pDxfLayer)
     {
+        nGeoType = GeoType;
         nID = ID;
         nLayer = Layer;
         nPassThrough = PassThrough;
@@ -251,6 +252,7 @@ public class GEPoint : IGeoElement
         ZNv = dZNv;
     }
 
+    
     public GEPoint(GEPoint other)
     {
         X = other.X;
@@ -293,12 +295,13 @@ public class GEPoint : IGeoElement
     {
         dX = YNv;
         dY = XNv;
+        dZ = ZNv;
         return (int)EN_CLSS_RETURN_CODE.CCE_POINT_OUT_LINE;
     }
 
     public void Break2Elements(double dDistance, EN_CLSS_POINT nUsePoint, out IGeoElement pGeoEle)
     {
-        throw new NotImplementedException();
+        pGeoEle = (IGeoElement)(new GEPoint(this));
     }
 
     public EN_CLSS_RETURN_CODE GetNv(EN_CLSS_POINT nWhich, out double pdXNv, out double pdYNv, out double pdZNv)
@@ -346,6 +349,15 @@ public class GEPoint : IGeoElement
 
     public void GetRelativeReferenceFrame(EN_CLSS_POINT nWhich, out double dXx, out double dYx, out double dZx, out double dXy, out double dYy, out double dZy, out double dXz, out double dYz, out double dZz)
     {
+        dXx = 0;
+        dYx = 0;
+        dZx = 0;
+        dXy = 0;
+        dYy = 0;
+        dZy = 0;
+        dXz = 0;
+        dYz = 0;
+        dZz = 0;
         throw new NotImplementedException();
     }
 
@@ -370,12 +382,14 @@ public class GEPoint : IGeoElement
 
     public int GetSharpCorners(double dDeltaIn, double dDeltaOut, int nCorner, out Geometries pGeometries)
     {
+        pGeometries = new Geometries();
         throw new NotImplementedException();
         return -1;
     }
 
     public int AddLinearInOutOnSharpCorners(double dParallelLeaningIn, double dParallelLeaningOut, double dPerpendicularLeaning, double dHoriCopyingDistance, double dExtraDepthFromPanel, double dVertCopyingDistance, EN_CLSS_GEO_LAYER nHCopyingLayer, EN_CLSS_GEO_LAYER nVCopyingLayer, EN_CLSS_ON_OFF nRightPerpLeaning, EN_CLSS_ON_OFF nAlsoOnExtremes, int nCorner, out Geometry pGeometry)
     {
+        pGeometry = new Geometry();
         throw new NotImplementedException();
         return -1;
     }
@@ -388,37 +402,47 @@ public class GEPoint : IGeoElement
 
     public int SmoothConnectionWith(IGeoElement pSecondElement, double dRadius, out IGeoElement pSmoothLink)
 	{
+        pSmoothLink =(IGeoElement)(new GEPoint(this));
         throw new NotImplementedException();
         return -1;
     }
 
 	public int GetPointFromDistance(double dDistance, EN_CLSS_POINT nPoint, out double dX, out double dY, out double dZ)
 	{
-        throw new NotImplementedException();
+        dX = X + dDistance;
+        dY = Y;
+        dZ = Z;
         return -1;
     }
 
 	public int GetTangentFromDistance(double dDistance, EN_CLSS_POINT nPoint, out double dX, out double dY, out double dZ)
 	{
-        throw new NotImplementedException();
+        dX = XNv;
+        dY = YNv;
+        dZ = ZNv;
         return -1;
     }
 
 	public int Intersect(IGeoElement pGeoElement, EN_CLSS_ON_OFF nExtend1, EN_CLSS_ON_OFF nExtend2, out Geometry pSolutions)
     {
+        pSolutions = new Geometry();
         throw new NotImplementedException();
         return -1;
     }
 
 	public void ExplodeGeometry(out Geometry pGeometry, EN_CLSS_ON_OFF nAddPoint, int nCorner)
     {
+        pGeometry = new Geometry();
         throw new NotImplementedException();
     }
 
 	public int GetDistanceFromPoint(EN_CLSS_POINT nRefPoint, double dX, double dY, double dZ, out double dDistance)
 	{
-        throw new NotImplementedException();
-        return -1;
+        double dXx = X - dX;
+        double dYy = Y - dY;
+        double dZz = Z - dZ;
+        dDistance = Math.Sqrt(dXx*dXx + dYy*dYy + dZz*dZz);
+        return 0;
     }
 
 	public double Distance(IGeoElement pGeoElement)
@@ -429,11 +453,18 @@ public class GEPoint : IGeoElement
 
 	public void GetStartEndPoints(out double dXS, out double dYS, out double dZS, out double dXE, out double dYE, out double dZE)
     {
-        throw new NotImplementedException();
+        dXS = X;
+        dXE = X;
+        dYS = Y;
+        dYE = Y;
+        dZS = Z;
+        dZE = Z;
     }
 
 	public void GetGeoEntity(out string pData, out int pSize)
     {
+        pData = "";
+        pSize = 0;
         throw new NotImplementedException();
     }
 	

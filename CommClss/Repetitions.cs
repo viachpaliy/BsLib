@@ -130,7 +130,6 @@ public class Repetitions : IRepetitions
         Count = nCount;
         StepX = dStepX;
         StepY = dStepY;
-        StepZ = dStepZ;
         StepRadius = dStepRadius;
         StepInitAng = dStepInitAng;
         StepAng = dStepAng;
@@ -145,7 +144,8 @@ public class Repetitions : IRepetitions
         Count = nCount;
         StepX = dStepX;
         StepY = dStepY;
-        StepZ = dStepZ;
+		Distance = dDistance;
+		Angle = dAngle;
         StepRadius = dStepRadius;
         StepInitAng = dStepInitAng;
         StepAng = dStepAng;
@@ -160,7 +160,8 @@ public class Repetitions : IRepetitions
         nCount = Count;
         dStepX = StepX;
         dStepY = StepY;
-        dStepZ = StepZ;
+		dDistance = Distance;
+		dAngle = Angle;
         dStepRadius = StepRadius;
         dStepInitAng = StepInitAng;
         dStepAng = StepAng;

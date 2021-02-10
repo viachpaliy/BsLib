@@ -18,6 +18,8 @@ namespace  GeoClss
         }
 	}
 
+    public Geometries(){}
+
 	public IEnumerator GetEnumerator()
     {
         return items.GetEnumerator();
@@ -34,7 +36,7 @@ namespace  GeoClss
         keys.Add(Key);
     }
 
-	public void Remove(int Index)
+	public void Remove(int nIndex)
     {
         items.RemoveAt(nIndex);
         keys.RemoveAt(nIndex);
